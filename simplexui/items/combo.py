@@ -385,7 +385,7 @@ class Combo(SimplexAccessor):
 		Parameters
 		----------
 		newType :
-			
+
 
 		Returns
 		-------
@@ -404,12 +404,12 @@ class Combo(SimplexAccessor):
 		Parameters
 		----------
 		row :
-			
+
 
 		Returns
 		-------
 		type
-			
+
 
 		'''
 		if row == len(self.pairs):
@@ -461,6 +461,11 @@ class Combo(SimplexAccessor):
 				x = base if sfx.isdigit() else s.name
 			shapeNames.append(x)
 		return [i == self.name for i in shapeNames]
+
+	def updateName(self):
+		values = [p.value for p in self.pairs]
+		name = self.buildComboName(self.getSliders(), values)
+		self.name = name
 
 	def getSliderIndex(self, slider):
 		'''

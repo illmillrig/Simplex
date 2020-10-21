@@ -181,7 +181,11 @@ class Slider(SimplexAccessor):
 		self._name = value
 		self.prog.name = value
 		self.DCC.renameSlider(self, value)
-		# TODO Also rename the combos
+
+		# rename combos
+		for combo in self.simplex.getDownstreamCombos(self):
+			combo.updateName()
+
 		for model in self.models:
 			model.itemDataChanged(self)
 

@@ -209,6 +209,25 @@ class Progression(SimplexAccessor):
 			self.expanded = {}
 
 	@property
+	def name(self):
+		''' '''
+		return self._name
+
+	@name.setter
+	def name(self, val):
+		''' The name of the current object '''
+		oldName = self.name
+		self._name = val
+
+		# loop over the names in the progression shape items and try to rename those if there's a match in the name
+		for pair in self.pairs[1:]:  # skip the rest shape
+			if oldName not in pair.name:
+				continue
+			pairName = pair.name
+			newPairName = pairName.replace(oldName, val)
+			pair.name = newPairName
+
+	@property
 	def interp(self):
 		'''Get the interp for this Progression'''
 		return self._interp
